@@ -8,6 +8,20 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 
 `macOS`:12.0.1
 
+## 功能说明
+
+- CPU变频正常
+
+- Wifi，蓝牙正常
+
+- 睡眠唤醒正常
+
+- 核显性能释放正常
+
+- Airdrop不可用，为Intel第三方驱动限制，如需求此功能需要更换Mac免驱网卡
+
+- USB已定制，前面板USB3.0 * 2 + Type C * 1， 后面板USB2.0 * 2 + USB3.0 * 1 + Type C * 1， 阉割了两个后面板USB 3.0
+
 ## 使用说明
 
 **请勿直接使用**
