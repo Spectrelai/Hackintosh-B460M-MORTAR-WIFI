@@ -25,7 +25,7 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 
 2. 参考[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#platforminfo)或其他方式配置`config.plist`三码，i7及以下使用iMac20,1机型，i9使用iMac20,2机型
 
-3. Bios设置打开`D.T.M`
+3. Bios设置打开`D.T.M`，该设置为微星自带黑苹果一键设置，打开后不需要再修改其他项，如需要win11启动可以再打开PTT
 
 ## 注意事项
 
