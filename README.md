@@ -44,7 +44,7 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 | -------- | ------------------------ |
 | CPU      | Intel i5-10400           |
 | 主板     | 微星 B460M MORTAR WIFI   |
-| 内存     | 英睿达 DDR4 3200 8GB × 2 |
+| 内存     | 英睿达 DDR4 3200 8GB × 4 |
 | 核显     | Intel UHD630            |
 | 独显     | 蓝宝石 RX5500XT          |
 | 有线网卡 | RTL8125（板载）          |
