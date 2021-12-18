@@ -39,7 +39,7 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 
 | 部件     | 型号                     |
 | -------- | ------------------------ |
-| CPU      | Intel i5-10700           |
+| CPU      | Intel Core i7-10700           |
 | 主板     | 微星 B460M MORTAR WIFI   |
 | 内存     | 英睿达 DDR4 3200 8GB × 4 |
 | 核显     | Intel UHD630            |
