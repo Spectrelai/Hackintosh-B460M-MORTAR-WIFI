@@ -4,9 +4,9 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 
 ## 当前版本
 
-`OC`:0.7.5
+`OC`:0.7.6
 
-`macOS`:12.0.1
+`macOS`:12.1
 
 ## 功能说明
 
@@ -21,11 +21,13 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 
 **请勿直接使用**
 
-1. 根据使用的显卡选择`config.uhd630.plist`或`config.rx5500xt.plist`,改名为`config.plist`
+1. 根据使用的显卡选择`config.uhd630.plist`或`config.rx6600xt.plist`,改名为`config.plist`
 
 2. 参考[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#platforminfo)或其他方式配置`config.plist`三码，i7及以下使用iMac20,1机型，i9使用iMac20,2机型
 
 3. Bios设置打开`D.T.M`，该设置为微星自带黑苹果一键设置，打开后不需要再修改其他项，如需要win11启动可以再打开PTT
+
+4. OC在0.7.5后增加了ResizeGpuBars和ResizeAppleGpuBars适配了主板的ResizeBar设定, 经我自己测试开启后会导致macOS睡眠唤醒黑屏，未找到解决方案，所以config.plist中都设定为了-1，同时主板的ResizeBar需要关闭，否则无法引导macOS。有需求的可以自己研究解决
 
 ## 注意事项
 
@@ -37,11 +39,11 @@ EFI大部分基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-I
 
 | 部件     | 型号                     |
 | -------- | ------------------------ |
-| CPU      | Intel i5-10400           |
+| CPU      | Intel i5-10700           |
 | 主板     | 微星 B460M MORTAR WIFI   |
 | 内存     | 英睿达 DDR4 3200 8GB × 4 |
 | 核显     | Intel UHD630            |
-| 独显     | 蓝宝石 RX5500XT          |
+| 独显     | 蓝宝石 RX6600XT 超白金    |
 | 有线网卡 | RTL8125（板载）          |
 | 无线网卡 | Intel AX200（板载）      |
-| 硬盘     | 闪迪 至尊高速 m.2 1TB    |
+| 硬盘     | 西数SN750 500G（macOS） 闪迪 至尊高速 m.2 1TB（Windows）    |
