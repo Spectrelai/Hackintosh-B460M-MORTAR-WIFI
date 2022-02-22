@@ -22,14 +22,14 @@
 
 | 功能 | 测试结果         | 备注                                                         |
 | ---- | ---------------- | ------------------------------------------------------------ |
-| CPU  | 变频正常         |                                                              |
-| 核显 | UHD630功能正常   | 性能释放正常                                                 |
-| 独显 | RX6600XT功能正常 | RX6000系加载苹果logo时会有几率显示黑屏，但加载完后可正常进入系统，目前暂无解决方式 |
-| 睡眠 | 正常             | 如遇关机后自动开机问题需要在Bios设置中关闭usb唤醒            |
+| CPU  | 正常            | 超线程和变频正常                                               |
+| 核显 | 正常           | 性能释放正常                                                 |
+| 独显 | 正常           | RX6000系一些卡加载苹果logo时会显示黑屏，加载完后可正常进入系统，目前暂无解决方式 |
+| 睡眠 | 正常             | 如遇关机后自动开机问题需要在Bios设置中关闭usb唤醒（USB唤醒待优化）            |
 | WIFI | 正常             |                                                              |
 | 蓝牙 | 正常             | Airdrop不可用，为Intel第三方驱动限制，如需求此功能需要更换mac免驱网卡 |
 | 网口 | 正常             | 支持2.5G速率                                                 |
-| USB  | 正常             | USB已定制，前面板USB3.0 * 2 + Type C * 1， 后面板USB2.0 * 2 + USB3.0 * 1（ Type C旁） + Type C * 1， 阉割了两个后面板USB 3.0 |
+| USB  | 正常             | USB已定制，定制情况详见[USB定制](#USB定制) |
 
 ## 使用说明
 
@@ -65,16 +65,50 @@
 
 ### USB定制
 
-如果现有的USB定制不符合你的机箱接口情况，可以重新定制USB端口
+定制端口表
 
-USB定制程序：[USBMap](https://github.com/corpnewt/USBMap)
-
-参考链接内README中的Quick Start进行使用，可以在本EFI的`USBMap.kexts`基础上加载进行修改
+| 名称 | 类型             | 位置                      |
+| ---- | ---------------- | ------------------------- |
+| HS01 | USB2.0           | 后置面板网口旁USB-A口 #1  |
+| HS02 | USB2.0           | 后置面板网口旁USB-A口 #2  |
+| HS03 | USB2.0           | 后置面板USB-C口旁USB-A口  |
+| HS04 | USB2.0 Type-C    | 后置面板USB-C口           |
+| HS05 | USB2.0           | 主板扩展口JUSB3 #1        |
+| HS06 | USB2.0           | 主板扩展口JUSB3 #2        |
+| HS07 | USB2.0 Type-C    | 主板扩展口JUSB4           |
+| HS08 | 内置蓝牙         | 主板内置                  |
+| HS09 | USB2.0           | 后置面板PS2口旁USB-A口 #1 |
+| HS10 | USB2.0           | 后置面板PS2口旁USB-A口 #2 |
+| HS11 | 内置USB2.0Hub    | 主板扩展口JUSB1-2         |
+| HS12 | 内置微星灯效控制 | 主板内置                  |
+| SS01 | USB3.0           | 后置面板网口旁USB-A口 #1  |
+| SS02 | USB3.0           | 后置面板网口旁USB-A口 #2  |
+| SS03 | USB3.0           | 后置面板USB-C口旁USB-A口  |
+| SS04 | USB3.0 Type-C    | 后置面板USB-C口           |
+| SS05 | USB3.0           | 主板扩展口JUSB3 #1        |
+| SS06 | USB3.0           | 主板扩展口JUSB3 #2        |
+| SS07 | USB3.0           | 主板扩展口JUSB4           |
 
 特殊端口说明：
 
-- HS08：蓝牙使用，必须包含，否则蓝牙失效
-- HS11：内部USB2.0Hub使用，必须包含
-- HS12：微星灯效使用，mac下没有适配，可屏蔽
+- HS08：蓝牙端口，必须包含，否则蓝牙失效
+- HS11：内部USB2.0Hub端口，如果未使用JUSB1-2扩展口则可以屏蔽
+- HS12：微星灯效端口，mac下没有适配，可屏蔽
 
-生成新的`USBMap.kexts`后替换原本的`USBMap.kexts`
+默认屏蔽：HS11, HS12, SS01, SS02
+
+如果默认的USB定制不符合你的接口使用情况，可根据此表重新定制USB端口，预置的USBMap.kext包含该表所有端口，在此基础上可以去除检测端口的步骤直接进行定制选择
+
+#### 定制步骤
+
+1. 根据说明下载定制程序：[USBMap](https://github.com/corpnewt/USBMap)
+
+2. 如果没有Python环境，先下载安装[Python](https://www.python.org/downloads/)
+
+3. 运行USBMapInjectorEdit.command(macOS)或USBMapInjectorEdit.bat(Windows)
+
+4. 拖入EFI内的USBMap.kext
+
+5. 根据程序说明选择你需要的端口，因macOS限制，所选端口数不能超过15个
+
+6. 修改完成后退出程序，此时原USBMap.kext已完成修改
