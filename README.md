@@ -87,7 +87,7 @@
 | SS04 | USB3.0 Type-C    | 后置面板USB-C口           |
 | SS05 | USB3.0           | 主板扩展口JUSB3 #1        |
 | SS06 | USB3.0           | 主板扩展口JUSB3 #2        |
-| SS07 | USB3.0           | 主板扩展口JUSB4           |
+| SS07 | USB3.0 Type-C    | 主板扩展口JUSB4           |
 
 特殊端口说明：
 
