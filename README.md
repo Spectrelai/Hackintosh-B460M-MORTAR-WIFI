@@ -71,4 +71,10 @@ USB定制程序：[USBMap](https://github.com/corpnewt/USBMap)
 
 参考链接内README中的Quick Start进行使用，可以在本EFI的`USBMap.kexts`基础上加载进行修改
 
+特殊端口说明：
+
+- HS08：蓝牙使用，必须包含，否则蓝牙失效
+- HS11：内部USB2.0Hub使用，必须包含
+- HS12：微星灯效使用，mac下没有适配，可屏蔽
+
 生成新的`USBMap.kexts`后替换原本的`USBMap.kexts`
