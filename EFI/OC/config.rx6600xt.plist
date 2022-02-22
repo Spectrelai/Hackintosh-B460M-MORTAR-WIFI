@@ -215,6 +215,24 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
+				<string>XHCI-unsupported.kext</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+				<key>Enabled</key>
+				<true/>
+				<key>MinKernel</key>
+				<string></string>
+				<key>ExecutablePath</key>
+				<string></string>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>XHCI-unsupported.kext</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>USBMap.kext</string>
 				<key>MaxKernel</key>
 				<string></string>
