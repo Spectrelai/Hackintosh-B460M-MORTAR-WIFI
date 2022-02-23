@@ -4,6 +4,7 @@
  * Do note this SSDT requires an ACPI hot patch for _PTS to ZPTS as 
  * we're rerouting the old calls.
  * Source for SSDT: Rehabman
+ * Modify: Spectrelai
  */
 
 DefinitionBlock ("", "SSDT", 2, "Slav", "ZPTS", 0x00000000)
@@ -11,12 +12,18 @@ DefinitionBlock ("", "SSDT", 2, "Slav", "ZPTS", 0x00000000)
     External (_SB_.PCI0.XHC_.PMEE, FieldUnitObj)
     External (ZPTS, MethodObj)    // 1 Arguments
 
-    Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
+    If (CondRefOf (\_SB.PCI0.XHC.PMEE))
     {
-        ZPTS (Arg0)
-        If ((0x05 == Arg0))
+        Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
         {
-            \_SB.PCI0.XHC.PMEE = Zero
+            If (_OSI ("Darwin"))    // macOS
+            {
+                ZPTS (Arg0)
+                If ((0x05 == Arg0))     // S5
+                {
+                    \_SB.PCI0.XHC.PMEE = Zero
+                }
+            }
         }
     }
 }
