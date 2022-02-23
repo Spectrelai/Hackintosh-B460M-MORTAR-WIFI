@@ -1,8 +1,10 @@
 # OpenCore EFI For B460M-MORTAR-WIFI
 
+## 简介
+
 当前OC版本：`0.7.8`
 
-基于[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)，采用最简配置
+本EFI适用于B460M迫击炮WIFI版，其他主板仅供参考
 
 ## 适配说明
 
@@ -20,33 +22,62 @@
 
 ## 功能验证
 
-| 功能 | 测试结果         | 备注                                                         |
-| ---- | ---------------- | ------------------------------------------------------------ |
-| CPU  | 正常            | 超线程和变频正常                                               |
-| 核显 | 正常           | 性能释放正常                                                 |
-| 独显 | 正常           | RX6000系一些卡加载苹果logo时会显示黑屏，加载完后可正常进入系统，目前暂无解决方式 |
-| 睡眠 | 正常             | 如遇关机后自动开机问题需要在Bios设置中关闭usb唤醒（USB唤醒待优化）            |
-| WIFI | 正常             |                                                              |
-| 蓝牙 | 正常             | Airdrop不可用，为Intel第三方驱动限制，如需求此功能需要更换mac免驱网卡 |
-| 网口 | 正常             | 支持2.5G速率                                                 |
-| USB  | 正常             | USB已定制，定制情况详见[USB定制](#USB定制) |
+- [x] CPU超线程和变频
+- [x] UHD630
+- [x] RX6600XT
+- [x] 睡眠唤醒
+- [x] 关机
+- [x] WIFI
+- [x] 蓝牙
+- [x] 以太网，支持2.5G速率
+- [x] DP输出
+- [x] 音频输出
+- [x] USB端口
+- [x] iMessage, Facetime,
+- [x] Handoff
+- [ ] ~~Airdrop~~
 
 ## 使用说明
 
 **请勿直接使用**
 
-1. 根据使用的显卡选择`config.uhd630.plist`或`config.rx6600xt.plist`,改名为`config.plist`
-
-2. 参考[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#platforminfo)或其他方式配置`config.plist`三码，i7及以下使用iMac20,1机型，i9使用iMac20,2机型
-
-3. Bios设置打开`D.T.M`，该设置为微星自带黑苹果一键设置，打开后不需要再修改其他项，如需要win11启动可以再打开PTT
-
-4. OC在0.7.5后增加了ResizeGpuBars和ResizeAppleGpuBars适配了主板的ResizeBar设定, 经测试开启后会导致macOS睡眠唤醒黑屏，未找到解决方案所以都设定为了-1，同时主板的ResizeBar需要关闭，否则无法引导macOS。有需求的可以自行研究解决
+1. 下载[最新EFI文件](https://github.com/Spectrelai/Hackintosh-B460M-MORTAR-WIFI/archive/refs/heads/main.zip)，解压复制EFI目录下文件至自己的EFI目录
+2. 根据使用的显卡选择`config.uhd630.plist`或`config.rx6600xt.plist`,改名为`config.plist`
+3. 参考[此处](https://dortania.github.io/OpenCore-Install-Guide/config.plist/comet-lake.html#platforminfo)或其他方式配置`config.plist`三码，i7及以下使用iMac20,1机型，i9使用iMac20,2机型
+4. Bios设置打开`D.T.M`（微星自带黑苹果一键设置），关闭`ResizeBar`，如需要win11启动可以再打开PTT
 
 ## 注意事项
 
 - 不适用非Wifi版迫击炮，如需使用需要删除网卡和蓝牙相关kexts，并修改`config.plist`中声卡的pci地址
 - 三码需要保证唯一性，否则可能会影响Handoff，iMessage和FaceTime功能
+
+## 已知问题
+
+#### 加载苹果Logo时会显示黑屏
+
+据观察可能为RX6000系的macOS驱动问题，加载完后可正常进入系统恢复显示，目前暂无解决方式
+
+#### Airdrop不可用
+
+[itlwm](https://github.com/OpenIntelWireless/itlwm)未适配，有需求需要更换免驱网卡
+
+#### 部分USB端口失效
+
+USB已定制，因端口数量限制屏蔽了部分端口，定制情况详见[USB定制](#USB定制)
+
+#### Bios不能开启ResizeBar
+
+OC在0.7.5后增加了ResizeGpuBars和ResizeAppleGpuBars适配了主板的ResizeBar设定, 经测试开启后会导致macOS睡眠唤醒黑屏，未找到解决方案所以都设定为了-1，同时主板的ResizeBar需要关闭，否则无法引导macOS。有需求的可以自行研究解决
+
+## 已解决问题
+
+#### Bios开启USB唤醒时关机会有概率变成重启
+
+已修复
+
+修复方案：`EFI/OC/ACPI/`增加`SSDT-USB-FixShutdown.aml`，`config.plist`增加`_PTS to ZPTS`重命名
+
+如果对你的主板无效，需要自行查找你的主板ACPI中USB控制器的路径，并替换[SSDT-USB-FixShutdown](ACPI/SSDT-USB-FixShutdown.dsl)中的`SB.PCI0.XHC`，参考[此处](https://dortania.github.io/Getting-Started-With-ACPI/Manual/compile.html)c重新编译成aml文件放入EFI替换
 
 ## 硬件测试配置
 
@@ -112,3 +143,9 @@
 5. 根据程序说明选择你需要的端口，因macOS限制，所选端口数不能超过15个
 
 6. 修改完成后退出程序，此时原USBMap.kext已完成修改
+
+## 致谢
+
+[OpenCore](https://github.com/acidanthera/OpenCorePkg)
+
+[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
