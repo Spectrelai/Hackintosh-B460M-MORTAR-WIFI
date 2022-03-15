@@ -100,24 +100,24 @@ OC在0.7.5后增加了ResizeGpuBars和ResizeAppleGpuBars适配了主板的Resize
 
 | 名称 | 类型             | 位置                      |
 | ---- | ---------------- | ------------------------- |
-| HS01 | USB2.0           | 后置面板网口旁USB-A口 #1  |
-| HS02 | USB2.0           | 后置面板网口旁USB-A口 #2  |
+| HS01 | USB2.0           | 后置面板网口旁USB-A口 1  |
+| HS02 | USB2.0           | 后置面板网口旁USB-A口 2  |
 | HS03 | USB2.0           | 后置面板USB-C口旁USB-A口  |
 | HS04 | USB2.0 Type-C    | 后置面板USB-C口           |
-| HS05 | USB2.0           | 主板扩展口JUSB3 #1        |
-| HS06 | USB2.0           | 主板扩展口JUSB3 #2        |
+| HS05 | USB2.0           | 主板扩展口JUSB3 1        |
+| HS06 | USB2.0           | 主板扩展口JUSB3 2        |
 | HS07 | USB2.0 Type-C    | 主板扩展口JUSB4           |
 | HS08 | 内置蓝牙         | 主板内置                  |
-| HS09 | USB2.0           | 后置面板PS2口旁USB-A口 #1 |
-| HS10 | USB2.0           | 后置面板PS2口旁USB-A口 #2 |
+| HS09 | USB2.0           | 后置面板PS2口旁USB-A口 1 |
+| HS10 | USB2.0           | 后置面板PS2口旁USB-A口 2 |
 | HS11 | 内置USB2.0Hub    | 主板扩展口JUSB1-2         |
 | HS12 | 内置微星灯效控制 | 主板内置                  |
-| SS01 | USB3.0           | 后置面板网口旁USB-A口 #1  |
-| SS02 | USB3.0           | 后置面板网口旁USB-A口 #2  |
+| SS01 | USB3.0           | 后置面板网口旁USB-A口 1  |
+| SS02 | USB3.0           | 后置面板网口旁USB-A口 2  |
 | SS03 | USB3.0           | 后置面板USB-C口旁USB-A口  |
 | SS04 | USB3.0 Type-C    | 后置面板USB-C口           |
-| SS05 | USB3.0           | 主板扩展口JUSB3 #1        |
-| SS06 | USB3.0           | 主板扩展口JUSB3 #2        |
+| SS05 | USB3.0           | 主板扩展口JUSB3 1        |
+| SS06 | USB3.0           | 主板扩展口JUSB3 2        |
 | SS07 | USB3.0 Type-C    | 主板扩展口JUSB4           |
 
 特殊端口说明：
